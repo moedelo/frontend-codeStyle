@@ -3,6 +3,7 @@
 Другие руководства
 
  - [React](react/)
+ - [jQuery (deprecated)](jquery/)
 
 ## Оглавление
 
@@ -31,17 +32,7 @@
   1. [Соглашение об именовании](#naming-conventions)
   1. [Аксессоры](#accessors)
   1. [События](#events)
-  1. [jQuery](#jquery)
-  1. [Поддержка ECMAScript 5](#ecmascript-5-compatibility)
-  1. [Возможности ECMAScript 6+ (ES 2015+)](#ecmascript-6-es-2015-styles)
-  1. [Тестирование](#testing)
-  1. [Производительность](#performance)
-  1. [Ресурсы](#resources)
-  1. [В реальной жизни](#in-the-wild)
-  1. [Переводы](#translation)
-  1. [Пообщаться с разработчиками Airbnb](#chat-with-us-about-javascript)
-  1. [Участники перевода](#contributors)
-  1. [Лицензия](#license)
+
 
 ## <a name="types">Типы</a>
 
@@ -167,7 +158,7 @@
     const obj = {
       id: 5,
       name: 'San Francisco',
-      [getKey('enabled')]: true,
+      [getKey('enabled')]: true
     };
     ```
 
@@ -181,7 +172,7 @@
 
       addValue: function (value) {
         return atom.value + value;
-      },
+      }
     };
 
     // хорошо
@@ -190,7 +181,7 @@
 
       addValue(value) {
         return atom.value + value;
-      },
+      }
     };
     ```
 
@@ -204,12 +195,12 @@
 
     // плохо
     const obj = {
-      lukeSkywalker: lukeSkywalker,
+      lukeSkywalker: lukeSkywalker
     };
 
     // хорошо
     const obj = {
-      lukeSkywalker,
+      lukeSkywalker
     };
     ```
 
@@ -448,7 +439,7 @@
 ## <a name="destructuring">Деструктуризация</a>
 
   <a name="destructuring--object"></a><a name="5.1"></a>
-  - [5.1](#destructuring--object) При обращении к нескольким свойствам объекта используйте деструктуризацию объекта. jscs: [`requireObjectDestructuring`](http://jscs.info/rule/requireObjectDestructuring)
+  - [5.1](#destructuring--object) При обращении к нескольким свойствам объекта используйте деструктуризацию объекта.
 
     > Почему? Деструктуризация избавляет вас от создания временных переменных для этих свойств.
 
@@ -474,7 +465,7 @@
     ```
 
   <a name="destructuring--array"></a><a name="5.2"></a>
-  - [5.2](#destructuring--array) Используйте деструктуризацию массивов. jscs: [`requireArrayDestructuring`](http://jscs.info/rule/requireArrayDestructuring)
+  - [5.2](#destructuring--array) Используйте деструктуризацию массивов.
 
     ```javascript
     const arr = [1, 2, 3, 4];
@@ -531,7 +522,7 @@
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
-  - [6.2](#strings--line-length) Строки, у которых в строчке содержится более 100 символов, не пишутся на нескольких строчках с использованием конкатенации.
+  - [6.2](#strings--line-length) Строки, у которых в строчке содержится более 150 символов, не пишутся на нескольких строчках с использованием конкатенации.
 
     > Почему? Работать с разбитыми строками неудобно и это затрудняет поиск по коду.
 
@@ -599,30 +590,8 @@
 
 ## <a name="functions">Функции</a>
 
-  <a name="functions--declarations"></a><a name="7.1"></a>
-  - [7.1](#functions--declarations) Используйте функциональные выражения вместо объявлений функций. eslint: [`func-style`](http://eslint.org/docs/rules/func-style) jscs: [`disallowFunctionDeclarations`](http://jscs.info/rule/disallowFunctionDeclarations)
-
-    > Почему? У объявлений функций есть подъем. Это означает, что можно использовать функцию до того, как она определена в файле, но это вредит читабельности и поддержке. Если вы обнаружили, что определение функции настолько большое или сложное, что мешает понимать остальную часть файла, то, возможно, пришло время извлечь его в отдельный модуль. Не забывайте называть функциональные выражения — анонимные функции усложняют поиск проблемы в стеке вызовов. ([Обсуждение](https://github.com/airbnb/javascript/issues/794))
-
-    ```javascript
-    // плохо
-    function foo() {
-      // ...
-    }
-
-    // плохо
-    const foo = function () {
-      // ...
-    };
-
-    // хорошо
-    const foo = function bar() {
-      // ...
-    };
-    ```
-
-  <a name="functions--iife"></a><a name="7.2"></a>
-  - [7.2](#functions--iife) Оборачивайте в скобки немедленно вызываемые функции. eslint: [`wrap-iife`](http://eslint.org/docs/rules/wrap-iife.html) jscs: [`requireParenthesesAroundIIFE`](http://jscs.info/rule/requireParenthesesAroundIIFE)
+  <a name="functions--iife"></a><a name="7.1"></a>
+  - [7.1](#functions--iife) Оборачивайте в скобки немедленно вызываемые функции. eslint: [`wrap-iife`](http://eslint.org/docs/rules/wrap-iife.html) jscs: [`requireParenthesesAroundIIFE`](http://jscs.info/rule/requireParenthesesAroundIIFE)
 
     > Почему? Немедленно вызываемая функция представляет собой единый блок. Чтобы четко показать это — оберните функцию и вызывающие скобки в еще одни скобки. Обратите внимание, что в мире с модулями вам больше не нужны немедленно вызываемые функции.
 
@@ -633,11 +602,11 @@
     }());
     ```
 
-  <a name="functions--in-blocks"></a><a name="7.3"></a>
-  - [7.3](#functions--in-blocks) Никогда не объявляйте фукнции в нефункциональном блоке (`if`, `while`, и т.д.). Вместо этого присвойте функцию переменной. Браузеры позволяют выполнить ваш код, но все они интерпретируют его по-разному. eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
+  <a name="functions--in-blocks"></a><a name="7.2"></a>
+  - [7.2](#functions--in-blocks) Никогда не объявляйте фукнции в нефункциональном блоке (`if`, `while`, и т.д.). Вместо этого присвойте функцию переменной. Браузеры позволяют выполнить ваш код, но все они интерпретируют его по-разному. eslint: [`no-loop-func`](http://eslint.org/docs/rules/no-loop-func.html)
 
-  <a name="functions--note-on-blocks"></a><a name="7.4"></a>
-  - [7.4](#functions--note-on-blocks) **Примечание:** ECMA-262 определяет `блок` как список инструкций. Объявление функции не является инструкцией. [Подробнее в документе ECMA-262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
+  <a name="functions--note-on-blocks"></a><a name="7.3"></a>
+  - [7.3](#functions--note-on-blocks) **Примечание:** ECMA-262 определяет `блок` как список инструкций. Объявление функции не является инструкцией. [Подробнее в документе ECMA-262](http://www.ecma-international.org/publications/files/ECMA-ST/Ecma-262.pdf#page=97).
 
     ```javascript
     // плохо
@@ -656,8 +625,8 @@
     }
     ```
 
-  <a name="functions--arguments-shadow"></a><a name="7.5"></a>
-  - [7.5](#functions--arguments-shadow) Никогда не называйте параметр `arguments`. Он будет иметь приоритет над объектом `arguments`, который доступен для каждой функции.
+  <a name="functions--arguments-shadow"></a><a name="7.4"></a>
+  - [7.4](#functions--arguments-shadow) Никогда не называйте параметр `arguments`. Он будет иметь приоритет над объектом `arguments`, который доступен для каждой функции.
 
     ```javascript
     // плохо
@@ -671,8 +640,8 @@
     }
     ```
 
-  <a name="es6-rest"></a><a name="7.6"></a>
-  - [7.6](#es6-rest) Никогда не используйте `arguments`, вместо этого используйте синтаксис оставшихся параметров `...`. eslint: [`prefer-rest-params`](http://eslint.org/docs/rules/prefer-rest-params)
+  <a name="es6-rest"></a><a name="7.5"></a>
+  - [7.5](#es6-rest) Никогда не используйте `arguments`, вместо этого используйте синтаксис оставшихся параметров `...`. eslint: [`prefer-rest-params`](http://eslint.org/docs/rules/prefer-rest-params)
 
     > Почему? `...` явно говорит о том, какие именно аргументы вы хотите извлечь. Кроме того, такой синтаксис создает настоящий массив, а не массиво-подобный объект как `arguments`.
 
@@ -689,8 +658,8 @@
     }
     ```
 
-  <a name="es6-default-parameters"></a><a name="7.7"></a>
-  - [7.7](#es6-default-parameters) Используйте синтаксис записи аргументов по умолчанию, а не изменяйте аргументы функции.
+  <a name="es6-default-parameters"></a><a name="7.6"></a>
+  - [7.6](#es6-default-parameters) Используйте синтаксис записи аргументов по умолчанию, а не изменяйте аргументы функции.
 
     ```javascript
     // очень плохо
@@ -717,8 +686,8 @@
     }
     ```
 
-  <a name="functions--default-side-effects"></a><a name="7.8"></a>
-  - [7.8](#functions--default-side-effects) Избегайте побочных эффектов с параметрами по умолчанию.
+  <a name="functions--default-side-effects"></a><a name="7.7"></a>
+  - [7.7](#functions--default-side-effects) Избегайте побочных эффектов с параметрами по умолчанию.
 
     > Почему? И так все понятно.
 
@@ -734,8 +703,8 @@
     count();  // 3
     ```
 
-  <a name="functions--defaults-last"></a><a name="7.9"></a>
-  - [7.9](#functions--defaults-last) Всегда вставляйте последними параметры по умолчанию.
+  <a name="functions--defaults-last"></a><a name="7.8"></a>
+  - [7.8](#functions--defaults-last) Всегда вставляйте последними параметры по умолчанию.
 
     ```javascript
     // плохо
@@ -749,8 +718,8 @@
     }
     ```
 
-  <a name="functions--constructor"></a><a name="7.10"></a>
-  - [7.10](#functions--constructor) Никогда не используйте конструктор функций для создания новых функий. eslint: [`no-new-func`](http://eslint.org/docs/rules/no-new-func)
+  <a name="functions--constructor"></a><a name="7.9"></a>
+  - [7.9](#functions--constructor) Никогда не используйте конструктор функций для создания новых функий. eslint: [`no-new-func`](http://eslint.org/docs/rules/no-new-func)
 
     > Почему? Создание функции в таком духе вычисляет строку подобно eval(), из-за чего открываются уязвимости.
 
@@ -762,8 +731,8 @@
     var subtract = Function('a', 'b', 'return a - b');
     ```
 
-  <a name="functions--signature-spacing"></a><a name="7.11"></a>
-  - [7.11](#functions--signature-spacing) Отступы при определении функции. eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
+  <a name="functions--signature-spacing"></a><a name="7.10"></a>
+  - [7.10](#functions--signature-spacing) Отступы при определении функции. eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
 
     > Почему? Однородность кода — это хорошо. Вам не надо будет добавлять или удалять пробел при манипуляции с именем.
 
@@ -778,8 +747,8 @@
     const y = function a() {};
     ```
 
-  <a name="functions--mutate-params"></a><a name="7.12"></a>
-  - [7.12](#functions--mutate-params) Никогда не изменяйте параметры. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
+  <a name="functions--mutate-params"></a><a name="7.11"></a>
+  - [7.11](#functions--mutate-params) Никогда не изменяйте параметры. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
 
     > Почему? Манипуляция объектами, приходящими в качестве параметров, может вызывать нежелательные побочные эффекты в вызывающей функции.
 
@@ -795,8 +764,8 @@
     }
     ```
 
-  <a name="functions--reassign-params"></a><a name="7.13"></a>
-  - [7.13](#functions--reassign-params) Никогда не переназначайте параметры. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
+  <a name="functions--reassign-params"></a><a name="7.12"></a>
+  - [7.12](#functions--reassign-params) Никогда не переназначайте параметры. eslint: [`no-param-reassign`](http://eslint.org/docs/rules/no-param-reassign.html)
 
     > Почему? Переназначенные параметры могут привести к неожиданному поведению, особенно при обращении к `arguments`. Это также может вызывать проблемы оптимизации, особенно в V8.
 
@@ -823,8 +792,8 @@
     }
     ```
 
-  <a name="functions--spread-vs-apply"></a><a name="7.14"></a>
-  - [7.14](#functions--spread-vs-apply) Отдавайте предпочтение использованию оператора расширения `...` при вызове вариативной функции. eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
+  <a name="functions--spread-vs-apply"></a><a name="7.13"></a>
+  - [7.13](#functions--spread-vs-apply) Отдавайте предпочтение использованию оператора расширения `...` при вызове вариативной функции. eslint: [`prefer-spread`](http://eslint.org/docs/rules/prefer-spread)
 
     > Почему? Это чище, вам не нужно предоставлять контекст, и не так просто составить `new` с `apply`.
 
@@ -844,8 +813,8 @@
     new Date(...[2016, 8, 5]);
     ```
 
-  <a name="functions--signature-invocation-indentation"></a>
-  - [7.15](#functions--signature-invocation-indentation) Функции с многострочным определением или запуском должны содержать такие же отступы, как и другие многострочные списки в этом руководстве: с каждым элементом на отдельной строке, с запятой в конце элемента.
+  <a name="functions--signature-invocation-indentation"></a><a name="7.14"></a>
+  - [7.14](#functions--signature-invocation-indentation) Функции с многострочным определением или запуском должны содержать такие же отступы, как и другие многострочные списки в этом руководстве: с каждым элементом на отдельной строке, с запятой в конце элемента.
 
     ```javascript
     // плохо
@@ -1194,15 +1163,15 @@
 
     ```javascript
     // плохо
-    const AirbnbStyleGuide = require('./AirbnbStyleGuide');
-    module.exports = AirbnbStyleGuide.es6;
+    const StyleGuide = require('./StyleGuide');
+    module.exports = StyleGuide.es6;
 
     // ok
-    import AirbnbStyleGuide from './AirbnbStyleGuide';
-    export default AirbnbStyleGuide.es6;
+    import StyleGuide from './StyleGuide';
+    export default StyleGuide.es6;
 
     // отлично
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './StyleGuide';
     export default es6;
     ```
 
@@ -1213,10 +1182,10 @@
 
     ```javascript
     // плохо
-    import * as AirbnbStyleGuide from './AirbnbStyleGuide';
+    import * as StyleGuide from './StyleGuide';
 
     // хорошо
-    import AirbnbStyleGuide from './AirbnbStyleGuide';
+    import StyleGuide from './StyleGuide';
     ```
 
   <a name="modules--no-export-from-import"></a><a name="10.3"></a>
@@ -1227,11 +1196,11 @@
     ```javascript
     // плохо
     // файл es6.js
-    export { es6 as default } from './AirbnbStyleGuide';
+    export { es6 as default } from './StyleGuide';
 
     // хорошо
     // файл es6.js
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './StyleGuide';
     export default es6;
     ```
 
@@ -1323,7 +1292,7 @@
     ```
 
   <a name="modules--no-webpack-loader-syntax"></a>
-  - [10.9](#modules--no-webpack-loader-syntax) Запретите синтаксис загрузчика Webpack в импорте.
+  - [10.9](#modules--no-webpack-loader-syntax) Не используйте синтаксис загрузчика Webpack в импорте.
  eslint: [`import/no-webpack-loader-syntax`](https://github.com/benmosher/eslint-plugin-import/blob/master/docs/rules/no-webpack-loader-syntax.md)
     > Почему? Использование Webpack синтаксиса связывает код с упаковщиком модулей. Предпочтительно использовать синтаксис загрузчика в `webpack.config.js`.
 
@@ -2146,7 +2115,7 @@
 ## <a name="whitespace">Пробелы</a>
 
   <a name="whitespace--spaces"></a><a name="19.1"></a>
-  - [19.1](#whitespace--spaces) Используйте мягкую табуляцию (символ пробела) шириной в 2 пробела. eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
+  - [19.1](#whitespace--spaces) Используйте мягкую табуляцию (символ пробела) шириной в 4 пробела. eslint: [`indent`](http://eslint.org/docs/rules/indent.html) jscs: [`validateIndentation`](http://jscs.info/rule/validateIndentation)
 
     ```javascript
     // плохо
@@ -2233,14 +2202,14 @@
 
     ```javascript
     // плохо
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './StyleGuide';
       // ...
     export default es6;
     ```
 
     ```javascript
     // плохо
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './StyleGuide';
       // ...
     export default es6;↵
     ↵
@@ -2248,7 +2217,7 @@
 
     ```javascript
     // хорошо
-    import { es6 } from './AirbnbStyleGuide';
+    import { es6 } from './StyleGuide';
       // ...
     export default es6;↵
     ```
@@ -2437,7 +2406,7 @@
     ```
 
   <a name="whitespace--max-len"></a><a name="19.12"></a>
-  - [19.12](#whitespace--max-len) Старайтесь не допускать, чтобы строки были длиннее 100 символов (включая пробелы). Замечание: согласно [пункту выше](#strings--line-length), длинные строки с текстом освобождаются от этого правила и не должны разбиваться на несколько строк. eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
+  - [19.12](#whitespace--max-len) Старайтесь не допускать, чтобы строки были длиннее 150 символов (включая пробелы). Замечание: согласно [пункту выше](#strings--line-length), длинные строки с текстом освобождаются от этого правила и не должны разбиваться на несколько строк. eslint: [`max-len`](http://eslint.org/docs/rules/max-len.html) jscs: [`maximumLineLength`](http://jscs.info/rule/maximumLineLength)
 
     > Почему? Это обеспечивает удобство чтения и поддержки кода.
 
@@ -2446,7 +2415,7 @@
     const foo = jsonData && jsonData.foo && jsonData.foo.bar && jsonData.foo.bar.baz && jsonData.foo.bar.baz.quux && jsonData.foo.bar.baz.quux.xyzzy;
 
     // плохо
-    $.ajax({ method: 'POST', url: 'https://airbnb.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
+    $.ajax({ method: 'POST', url: 'https://google.com/', data: { name: 'John' } }).done(() => console.log('Congratulations!')).fail(() => console.log('You have failed this city.'));
 
     // хорошо
     const foo = jsonData
@@ -2459,7 +2428,7 @@
     // хорошо
     $.ajax({
       method: 'POST',
-      url: 'https://airbnb.com/',
+      url: 'https://google.com/',
       data: { name: 'John' },
     })
       .done(() => console.log('Congratulations!'))
@@ -2485,7 +2454,7 @@
     const story = [
       once,
       upon,
-      aTime,
+      aTime
     ];
 
     // плохо
@@ -2501,112 +2470,37 @@
       firstName: 'Ada',
       lastName: 'Lovelace',
       birthYear: 1815,
-      superPower: 'computers',
+      superPower: 'computers'
     };
     ```
 
   <a name="commas--dangling"></a><a name="20.2"></a>
-  - [20.2](#commas--dangling) Добавляйте висячие запятые. eslint: [`comma-dangle`](http://eslint.org/docs/rules/comma-dangle.html) jscs: [`requireTrailingComma`](http://jscs.info/rule/requireTrailingComma)
-
-    > Почему? Такой подход дает понятную разницу при просмотре изменений. Кроме того, транспиляторы типа Babel удалят висячие запятые из собранного кода, поэтому вы можете не беспокоиться о [проблемах](https://github.com/airbnb/javascript/blob/es5-deprecated/es5/README.md#commas) в старых браузерах.
+  - [20.2](#commas--no-dangling) Не добавляйте висячие запятые. eslint: [`no-comma-dangle`](https://eslint.org/docs/rules/no-comma-dangle)
 
     ```diff
-    // плохо - git diff без висячей запятой
-    const hero = {
-         firstName: 'Florence',
-    -    lastName: 'Nightingale'
-    +    lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'modern nursing']
-    };
-
-    // хорошо - git diff с висячей запятой
+    // плохо
     const hero = {
          firstName: 'Florence',
          lastName: 'Nightingale',
-    +    inventorOf: ['coxcomb chart', 'modern nursing'],
+         inventorOf: ['coxcomb chart', 'modern nursing'],
     };
-    ```
-
-    ```javascript
-    // плохо
-    const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully'
-    };
-
-    const heroes = [
-      'Batman',
-      'Superman'
-    ];
 
     // хорошо
     const hero = {
-      firstName: 'Dana',
-      lastName: 'Scully',
+         firstName: 'Florence',
+         lastName: 'Nightingale'
+         lastName: 'Nightingale',
+         inventorOf: ['coxcomb chart', 'modern nursing']
     };
-
-    const heroes = [
-      'Batman',
-      'Superman',
-    ];
-
-    // плохо
-    function createHero(
-      firstName,
-      lastName,
-      inventorOf
-    ) {
-      // ничего не делает
-    }
-
-    // хорошо
-    function createHero(
-      firstName,
-      lastName,
-      inventorOf,
-    ) {
-      // ничего не делает
-    }
-
-    // хорошо (обратите внимание, что висячей запятой не должно быть после "rest"-параметра)
-    function createHero(
-      firstName,
-      lastName,
-      inventorOf,
-      ...heroArgs
-    ) {
-      // ничего не делает
-    }
-
-    // плохо
-    createHero(
-      firstName,
-      lastName,
-      inventorOf
-    );
-
-    // хорошо
-    createHero(
-      firstName,
-      lastName,
-      inventorOf,
-    );
-
-    // хорошо (обратите внимание, что висячей запятой не должно быть после "rest"-аргумента)
-    createHero(
-      firstName,
-      lastName,
-      inventorOf,
-      ...heroArgs
-    );
     ```
+
 
 **[⬆ к оглавлению](#Оглавление)**
 
 ## <a name="semicolons">Точка с запятой</a>
 
   <a name="semicolons--required"></a><a name="21.1"></a>
-  - [21.1](#semicolons--required) **Да.** eslint: [`semi`](http://eslint.org/docs/rules/semi.html) jscs: [`requireSemicolons`](http://jscs.info/rule/requireSemicolons)
+  - [21.1](#semicolons--required) **Да.** eslint: [`semi`](http://eslint.org/docs/rules/semi.html)
 
     ```javascript
     // плохо
@@ -2679,21 +2573,8 @@
     const val = parseInt(inputValue, 10);
     ```
 
-  <a name="coercion--comment-deviations"></a><a name="22.4"></a>
-  - [22.4](#coercion--comment-deviations) Если по какой-то причине вы делаете что-то настолько безумное, что `parseInt` является слабым местом и вам нужно использовать побитовый сдвиг из-за [вопросов производительности](https://jsperf.com/coercion-vs-casting/3), оставьте комментарий объясняющий почему и что вы делаете.
-
-    ```javascript
-    // хорошо
-    /**
-     * этот код медленно работал из-за parseInt.
-     * побитовый сдвиг строки для приведения ее к числу
-     * работает значительно быстрее.
-     */
-    const val = inputValue >> 0;
-    ```
-
-  <a name="coercion--bitwise"></a><a name="22.5"></a>
-  - [22.5](#coercion--bitwise) **Примечание:** Будьте осторожны с побитовыми операциями. Числа в JavaScript являются [64-битными значениями](https://es5.github.io/#x4.3.19), но побитовые операции всегда возвращают 32-битные значенения ([источник](https://es5.github.io/#x11.7)). Побитовый сдвиг может привести к неожиданному поведению для значений больше, чем 32 бита. [Discussion](https://github.com/airbnb/javascript/issues/109). Верхний предел — 2 147 483 647:
+  <a name="coercion--bitwise"></a><a name="22.4"></a>
+  - [22.5](#coercion--bitwise) Не используйте побитовыми операциями.
 
     ```javascript
     2147483647 >> 0; // => 2147483647
@@ -2701,7 +2582,7 @@
     2147483649 >> 0; // => -2147483647
     ```
 
-  <a name="coercion--booleans"></a><a name="22.6"></a>
+  <a name="coercion--booleans"></a><a name="22.5"></a>
   - [22.6](#coercion--booleans) Логические типы:
 
     ```javascript
@@ -2776,18 +2657,10 @@
     ```
 
   <a name="naming--leading-underscore"></a><a name="23.4"></a>
-  - [23.4](#naming--leading-underscore) Не используйте `_` в начале или в конце названий. eslint: [`no-underscore-dangle`](http://eslint.org/docs/rules/no-underscore-dangle.html) jscs: [`disallowDanglingUnderscores`](http://jscs.info/rule/disallowDanglingUnderscores)
-
-    > Почему? JavaScript не имеет концепции приватности свойств или методов. Хотя подчеркивание в начале имени является распространенным соглашением, которое показывает “приватность”, фактически эти свойства являются такими же доступными, как и часть вашего публичного API. Это соглашение может привести к тому, что разработчики будут ошибочно думать, что изменения не приведут к поломке или что тесты не нужны. Итог: если вы хотите, чтобы что-то было “приватным”, то оно не должно быть доступно извне.
+  - [23.4](#naming--leading-underscore) Используйте `_` в начале названий, для обозначения приватных переменных.
 
     ```javascript
-    // плохо
-    this.__firstName__ = 'Panda';
-    this.firstName_ = 'Panda';
     this._firstName = 'Panda';
-
-    // хорошо
-    this.firstName = 'Panda';
     ```
 
   <a name="naming--self-this"></a><a name="23.5"></a>
@@ -2868,12 +2741,12 @@
   - [23.8](#naming--PascalCase-singleton) Используйте `PascalCase`, когда экспортируете конструктор / класс / синглтон / библиотечную функцию / объект.
 
     ```javascript
-    const AirbnbStyleGuide = {
+    const StyleGuide = {
       es6: {
       },
     };
 
-    export default AirbnbStyleGuide;
+    export default StyleGuide;
     ```
 
   <a name="naming--Acronyms-and-Initialisms"></a>
@@ -3008,105 +2881,3 @@
     ```
 
   **[⬆ к оглавлению](#Оглавление)**
-
-## <a name="jquery">jQuery</a>
-
-  <a name="jquery--dollar-prefix"></a><a name="26.1"></a>
-  - [26.1](#jquery--dollar-prefix) Начинайте названия переменных, хранящих объект jQuery, со знака `$`. jscs: [`requireDollarBeforejQueryAssignment`](http://jscs.info/rule/requireDollarBeforejQueryAssignment)
-
-    ```javascript
-    // плохо
-    const sidebar = $('.sidebar');
-
-    // хорошо
-    const $sidebar = $('.sidebar');
-
-    // хорошо
-    const $sidebarBtn = $('.sidebar-btn');
-    ```
-
-  <a name="jquery--cache"></a><a name="26.2"></a>
-  - [26.2](#jquery--cache) Кэшируйте jQuery-поиски.
-
-    ```javascript
-    // плохо
-    function setSidebar() {
-      $('.sidebar').hide();
-
-      // ...
-
-      $('.sidebar').css({
-        'background-color': 'pink',
-      });
-    }
-
-    // хорошо
-    function setSidebar() {
-      const $sidebar = $('.sidebar');
-      $sidebar.hide();
-
-      // ...
-
-      $sidebar.css({
-        'background-color': 'pink',
-      });
-    }
-    ```
-
-  <a name="jquery--queries"></a><a name="26.3"></a>
-  - [26.3](#jquery--queries) Для поиска в DOM используйте каскады `$('.sidebar ul')` или селектор родитель > ребенок `$('.sidebar > ul')`. [jsPerf](http://jsperf.com/jquery-find-vs-context-sel/16)
-
-  <a name="jquery--find"></a><a name="26.4"></a>
-  - [26.4](#jquery--find) Используйте функцию `find` для поиска в сохраненных jQuery-объектах.
-
-    ```javascript
-    // плохо
-    $('ul', '.sidebar').hide();
-
-    // плохо
-    $('.sidebar').find('ul').hide();
-
-    // хорошо
-    $('.sidebar ul').hide();
-
-    // хорошо
-    $('.sidebar > ul').hide();
-
-    // хорошо
-    $sidebar.find('ul').hide();
-    ```
-
-**[⬆ к оглавлению](#Оглавление)**
-
-## <a name="ecmascript-5-compatibility">Поддержка ECMAScript 5</a>
-
-  <a name="es5-compat--kangax"></a><a name="27.1"></a>
-  - [27.1](#es5-compat--kangax) Можно посмотреть в [таблице поддержки](https://kangax.github.io/es5-compat-table/) ES5 от пользователя [Kangax](https://twitter.com/kangax/) .
-
-**[⬆ к оглавлению](#Оглавление)**
-
-## <a name="ecmascript-6-es-2015-styles">Возможности ECMAScript 6+ (ES 2015+)</a>
-
-  <a name="es6-styles"></a><a name="28.1"></a>
-  - [28.1](#es6-styles) Здесь собраны ссылки на различные возможности ES6.
-
-1. [Стрелочные функции](#arrow-functions)
-1. [Классы и конструкторы](#classes--constructors)
-1. [Сокращенная запись методов объекта](#es6-object-shorthand)
-1. [Сокращенная запись свойств объекта](#es6-object-concise)
-1. [Вычисляемые имена свойств объекта](#es6-computed-properties)
-1. [Шаблонные строки](#es6-template-literals)
-1. [Деструктуризация](#destructuring)
-1. [Параметры по умолчанию](#es6-default-parameters)
-1. [Оставшиеся параметры](#es6-rest)
-1. [Оператор расширения](#es6-array-spreads)
-1. [Let и Const](#references)
-1. [Итераторы и генераторы](#iterators-and-generators)
-1. [Модули](#modules)
-
-  <a name="tc39-proposals"></a>
-  - [28.2](#tc39-proposals) Не используйте [предложения TC39](https://github.com/tc39/proposals), которые не перешли на 3 стадию.
-
-    > Почему? [Они ещё не закончены](https://tc39.github.io/process-document/) и  могут быть изменены или полностью изъяты. Мы хотим использовать JavaScript, а предложения еще не стали частью JavaScript.
-
-**[⬆ к оглавлению](#Оглавление)**
