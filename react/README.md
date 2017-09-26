@@ -1,6 +1,4 @@
-# Руководство по написанию React/JSX кода от [Airbnb](https://github.com/airbnb/javascript/react)
-
-*Наиболее разумный подход к написанию React и JSX*
+# Руководство по написанию React кода
 
 ## Оглавление
 
@@ -19,12 +17,10 @@
   1. [Методы](#methods)
   1. [Последовательность](#ordering)
   1. [`isMounted`](#ismounted)
-  1. [Переводы](#translation)
 
 ## <a name="basic-rules">Основные правила</a>
 
   - Включайте только один React компонент в файл.
-    - Однако, разрешается несколько [компонентов без состояний (чистых)](https://facebook.github.io/react/docs/reusable-components.html#stateless-functions) в файле. eslint: [`react/no-multi-comp`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-multi-comp.md#ignorestateless).
   - Всегда используйте JSX синтаксис.
   - Не используйте `React.createElement`, если вы только не инициализируете программу из файла, который не является JSX.
 
@@ -79,8 +75,8 @@
 
 ## <a name="naming">Именование</a>
 
-  - **Расширения**: Используйте расширение `.jsx` для компонентов React.
-  - **Имя файла**: Используйте `PascalCase` для названий файлов, например, `ReservationCard.jsx`.
+  - **Расширения**: Используйте расширение `.js` для компонентов React.
+  - **Имя файла**: Используйте `PascalCase` для названий файлов, например, `ReservationCard.js`.
   - **Именование переменной**: Используйте `PascalCase` для компонентов React и `camelCase` для их экземпляров. eslint: [`react/jsx-pascal-case`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-pascal-case.md)
 
     ```jsx
@@ -97,7 +93,7 @@
     const reservationItem = <ReservationCard />;
     ```
 
-  - **Именование компонента**: Называйте файлы так же как и компоненты. Например, `ReservationCard.jsx` должен содержать внутри компонент `ReservationCard`. Однако корневые компоненты в директории должны лежать в файле `index.jsx`, и в этом случае название папки должно быть таким же, как название компонента:
+  - **Именование компонента**: Называйте файлы так же как и компоненты. Например, `ReservationCard.js` должен содержать внутри компонент `ReservationCard`. Однако корневые компоненты в директории должны лежать в файле `index.js`, и в этом случае название папки должно быть таким же, как название компонента:
 
     ```jsx
     // плохо
@@ -327,52 +323,22 @@
 
   - Не используйте индексы элементов массива в качестве свойства `key`. Отдавайте предпочтение уникальному ID. ([почему?](https://medium.com/@robinpokorny/index-as-a-key-is-an-anti-pattern-e0349aece318))
 
-  ```jsx
-  // плохо
-  {todos.map((todo, index) =>
+    ```jsx
+    // плохо
+    {todos.map((todo, index) =>
     <Todo
       {...todo}
       key={index}
     />
-  )}
+    )}
 
-  // хорошо
-  {todos.map(todo => (
+    // хорошо
+    {todos.map(todo => (
     <Todo
       {...todo}
       key={todo.id}
     />
-  ))}
-  ```
-
-  - Всегда указывайте явные `defaultProps` для всех свойств, которые не указаны как необходимые.
-
-    > Почему? `propTypes` является способом документации, а предоставление `defaultProps` позволяет читателю вашего кода избежать множества неясностей. Кроме того, это может означать, что ваш код может пропустить определенные проверки типов.
-
-    ```jsx
-    // плохо
-    function SFC({ foo, bar, children }) {
-      return <div>{foo}{bar}{children}</div>;
-    }
-    SFC.propTypes = {
-      foo: PropTypes.number.isRequired,
-      bar: PropTypes.string,
-      children: PropTypes.node,
-    };
-
-    // хорошо
-    function SFC({ foo, bar, children }) {
-      return <div>{foo}{bar}{children}</div>;
-    }
-    SFC.propTypes = {
-      foo: PropTypes.number.isRequired,
-      bar: PropTypes.string,
-      children: PropTypes.node,
-    };
-    SFC.defaultProps = {
-      bar: '',
-      children: null,
-    };
+    ))}
     ```
 
 ## <a name="refs">Ссылки (Refs)</a>
@@ -389,34 +355,6 @@
     <Foo
       ref={(ref) => { this.myRef = ref; }}
     />
-    ```
-
-## <a name="parentheses">Круглые скобки</a>
-
-  - Оборачивайте в скобки JSX теги, когда они занимают больше одной строки. eslint: [`react/jsx-wrap-multilines`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-wrap-multilines.md)
-
-    ```jsx
-    // плохо
-    render() {
-      return <MyComponent className="long body" foo="bar">
-               <MyChild />
-             </MyComponent>;
-    }
-
-    // хорошо
-    render() {
-      return (
-        <MyComponent className="long body" foo="bar">
-          <MyChild />
-        </MyComponent>
-      );
-    }
-
-    // хорошо, когда одна строка
-    render() {
-      const body = <div>hello</div>;
-      return <MyComponent>{body}</MyComponent>;
-    }
     ```
 
 ## <a name="tags">Теги</a>
@@ -448,24 +386,7 @@
 
 ## <a name="methods">Методы</a>
 
-  - Используйте стрелочные функции для замыкания локальных переменных.
-
-    ```jsx
-    function ItemList(props) {
-      return (
-        <ul>
-          {props.items.map((item, index) => (
-            <Item
-              key={item.key}
-              onClick={() => doSomethingWith(item.name, index)}
-            />
-          ))}
-        </ul>
-      );
-    }
-    ```
-
-  - Привязывайте обработчики событий для метода `render` в конструкторе. eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
+  - Используйте методы со стрелочными функциями для привязывания обработчиков событий для метода `render`. eslint: [`react/jsx-no-bind`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-bind.md)
 
     > Почему? Вызов `bind` в методе `render` создает новую функцию при каждой перерисовке.
 
@@ -481,7 +402,7 @@
       }
     }
 
-    // хорошо
+    // средненько
     class extends React.Component {
       constructor(props) {
         super(props);
@@ -497,14 +418,32 @@
         return <div onClick={this.onClickDiv} />;
       }
     }
+
+    // хорошо
+    class extends React.Component {
+      onClickDiv = () => {
+        // ...
+      }
+
+      render() {
+        return <div onClick={this.onClickDiv} />;
+      }
+    }
     ```
 
-  - Не используйте префикс подчеркивания для именования внутренних методов React компонента.
-
-    > Почему? Префиксы подчеркивания иногда используются в других языках как соглашение о приватности. Но, в отличие от этих языков, в Javascript нет нативной поддержки приватности, все публично. Независимо от ваших намерений, добавление префикса подчеркивания к вашим свойства не делает их приватными, и любые свойства (с подчеркиванием или без) должны рассматриваться как публичные. Смотрите вопросы [#1024](https://github.com/airbnb/javascript/issues/1024), и [#490](https://github.com/airbnb/javascript/issues/490) для более глубокого обсуждения.
+  -  Используйте префикс подчеркивания для именования внутренних методов React компонента.
 
     ```jsx
-    // плохо
+    // хорошо
+        class extends React.Component {
+          onClickSubmit() {
+            // ...
+          }
+
+          // ...
+        }
+
+    // хорошо
     React.createClass({
       _onClickSubmit() {
         // ...
@@ -512,15 +451,6 @@
 
       // ...
     });
-
-    // хорошо
-    class extends React.Component {
-      onClickSubmit() {
-        // ...
-      }
-
-      // ...
-    }
     ```
 
   - Всегда возвращайте значение в методах `render`. eslint: [`react/require-render-return`](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/require-render-return.md)
