@@ -1,5 +1,5 @@
+# Руководство по написанию jQuery кода
 
-## <a name="jquery">jQuery</a>
   <a name="jquery--no-jquery"></a><a name="26.1"></a>
   - [26.1](#jquery--no-jquery) Не используйте jquery в "новом коде"
 
@@ -70,5 +70,3 @@
     // хорошо
     $sidebar.find('ul').hide();
     ```
-
-**[⬆ к оглавлению](#Оглавление)**

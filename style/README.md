@@ -1,4 +1,6 @@
-### <a name='tableOfContents'>Оглавление</a>
+# Руководство по написанию Css/Less кода
+
+## Оглавление
 1. [Терминология](#terminology)
 1. [CSS](#css)
 - [Id's](#ids)
