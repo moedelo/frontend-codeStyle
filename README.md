@@ -343,11 +343,11 @@
     ```
 
   <a name="arrays--from"></a><a name="4.4"></a>
-  - [4.4](#arrays--from) Чтобы преобразовать массиво-подобный объект в массив, используйте [Array.from](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Array/from).
+  - [4.4](#arrays--from) Чтобы преобразовать массиво-подобный объект в массив, используйте [Spread operator](https://developer.mozilla.org/ru/docs/Web/JavaScript/Reference/Operators/Spread_operator).
 
     ```javascript
     const foo = document.querySelectorAll('.foo');
-    const nodes = Array.from(foo);
+    const nodes = [ ...foo ];
     ```
 
   <a name="arrays--callback-return"></a><a name="4.5"></a>
