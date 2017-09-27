@@ -736,16 +736,14 @@
   <a name="functions--signature-spacing"></a><a name="7.10"></a>
   - [7.10](#functions--signature-spacing) Отступы при определении функции. eslint: [`space-before-function-paren`](http://eslint.org/docs/rules/space-before-function-paren) [`space-before-blocks`](http://eslint.org/docs/rules/space-before-blocks)
 
-    > Почему? Однородность кода — это хорошо. Вам не надо будет добавлять или удалять пробел при манипуляции с именем.
-
     ```javascript
     // плохо
-    const f = function(){};
+    const x = function () {};
     const g = function (){};
-    const h = function() {};
+    const h = function(){};
 
     // хорошо
-    const x = function () {};
+    const f = function() {};
     const y = function a() {};
     ```
 
