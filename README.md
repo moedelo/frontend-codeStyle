@@ -1868,14 +1868,14 @@
 ## <a name="blocks">Блоки</a>
 
   <a name="blocks--braces"></a><a name="16.1"></a>
-  - [16.1](#blocks--braces) Используйте фигурные скобки, когда блок кода занимает несколько строк.
+  - [16.1](#blocks--braces) Всегда используйте фигурные скобки.
 
     ```javascript
     // плохо
     if (test)
       return false;
 
-    // хорошо
+    // плохо
     if (test) return false;
 
     // хорошо
