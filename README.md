@@ -939,12 +939,18 @@
     ```
 
   <a name="arrows--one-arg-parens"></a><a name="8.4"></a>
-  - [8.4](#arrows--one-arg-parens) Если ваша функция принимает один аргумент и не использует фигурные скобки, то опустите круглые скобки. В противном случае, всегда оборачивайте аргументы круглыми скобками для ясности и последовательности. Примечание: также допускается всегда использовать круглые скобки, в этом случае используйте [вариант "always"](http://eslint.org/docs/rules/arrow-parens#always) для eslint или не включайте  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam) для jscs. eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html) jscs:  [`disallowParenthesesAroundArrowParam`](http://jscs.info/rule/disallowParenthesesAroundArrowParam)
+  - [8.4](#arrows--one-arg-parens) Если ваша функция принимает один аргумент и не использует фигурные скобки, то опустите круглые скобки. В противном случае, всегда оборачивайте аргументы круглыми скобками для ясности и последовательности. Примечание: также допускается всегда использовать круглые скобки, в этом случае используйте [вариант "always"](http://eslint.org/docs/rules/arrow-parens#always) для eslint. eslint: [`arrow-parens`](http://eslint.org/docs/rules/arrow-parens.html)
     > Почему? Меньше визуального беспорядка.
 
     ```javascript
     // плохо
     [1, 2, 3].map((x) => x * x);
+
+    // плохо
+    [1, 2, 3].map(x => {
+      const y = x + 1;
+      return x * y;
+    });
 
     // хорошо
     [1, 2, 3].map(x => x * x);
@@ -953,12 +959,6 @@
     [1, 2, 3].map(number => (
       `A long string with the ${number}. It’s so long that we don’t want it to take up space on the .map line!`
     ));
-
-    // плохо
-    [1, 2, 3].map(x => {
-      const y = x + 1;
-      return x * y;
-    });
 
     // хорошо
     [1, 2, 3].map((x) => {
