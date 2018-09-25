@@ -10,6 +10,7 @@
 - [Свойство-значение](#rule)
 - [Структура пары свойство-значение](#ruleStructure)
 - [Контроллы, компоненты, js](#controlsAndJs)
+- [Цвета](#colors)
 - [Отступы и пробелы](#whitespaces)
 - [!important](#important)
 1. [Less](#preprocessor)
@@ -50,8 +51,8 @@
 
 ```css
 /* some selector */ {
-  background: #f1f1f1;
-  color: #333;
+  cursor: pointer;
+  position: absolute;
 }
 ```
 
@@ -189,6 +190,14 @@
     margin: 0
 ```
 
+- Всегда ставьте 0 перед дробными значениями.
+``` CSS
+    // плохо
+    opacity: .7
+
+    // хорошо
+    opacity: 0.7
+```
 
 - Используйте одинарные ('') вместо двойных("") ковычек.
 ```
@@ -275,13 +284,24 @@
     $('.js-saveButton')
 ```
 
-- **Контроллы и компоненты**: Классы в компонентах и контроллах должны задаваться по подобию БЭМ нотации.
+- **Контроллы и компоненты**: Классы в компонентах и контроллах должны задаваться по подобию БЭМ нотации. Допускаются только блоки и модификаторы.
 ``` CSS
    .mdSelect {}
-   .mdSelect__textField {}
    .mdSelect--largeSize {}
 ```
 
+### <a name='colors'>Цвета</a>
+- Цвета обозначаются в формате hsl(a).
+``` Css
+    // плохо
+    color: #ffffff;
+
+    // хорошо
+    color: hsl(0, 0%, 95%);
+
+    // хорошо
+    background: hsla(0, 0%, 95%, 0.7);
+```
 
 ### <a name='whitespaces'>Отступы и пробелы</a>
 - Селекторы не отбиваются ничем.
@@ -308,22 +328,22 @@
     // плохо
     .selector{
         display: block;
-        color: #fff;
+        color: hsl(0, 0%, 95%);
     }
     .selector2{
         display: block;
-        color: #fff;
+        color: hsl(0, 0%, 95%);
     }
 
     // хорошо
     .selector{
         display: block;
-        color: #fff;
+        color: hsl(0, 0%, 95%);
     }
 
     .selector2{
         display: block;
-        color: #fff;
+        color: hsl(0, 0%, 95%);
     }
 ```
 
@@ -353,6 +373,21 @@
     }
 ```
 
+- Значения в скобках отбиваются пробелами.
+``` CSS
+    // плохо
+    .selector{
+        background: linear-gradient(336deg,hsl(0,0%,95%),hsl(0,0%,95%) 70.71%);
+        color: hsl(0,0%,95%);
+    }
+
+    // хорошо
+    .selector {
+        background: linear-gradient(336deg, hsl(0, 0%, 95%), hsl(0, 0%, 95%) 70.71%);
+        color: hsl(0, 0%, 95%);
+    }
+```
+
 - <a name='important'>!important</a>
 Использовать !important можно только в стилях ядра, для вещей которые никогда не должны быть переопределены.
 ``` CSS
@@ -363,9 +398,10 @@
 
     // хорошо
     .error{
-        color: #CB3338 !important;
+        color: hsl(0, 0%, 95%) !important;
     }
 ```
+
 
 ## <a name='preprocessor'>Less</a>
 - Переменные пишутся сamelCase'ом.
@@ -424,11 +460,11 @@
 - Общие цвета, размеры и прочие хаарактеристики следует присваивать переменным.
 ``` Less
     // плохо
-    .error { color: #CB3338; }
-    .closeLink { background: #CB3338; }
+    .error { color: hsl(0, 0%, 95%); }
+    .closeLink { background: hsl(0, 0%, 95%); }
 
     // хорошо
-    @redColor: #CB3338;
+    @redColor: hsl(0, 0%, 95%);
     .error { color: @redColor; }
     .closeLink { background: @redColor; }
 ```
