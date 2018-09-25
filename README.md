@@ -510,17 +510,17 @@
 ## <a name="strings">Строки</a>
 
   <a name="strings--quotes"></a><a name="6.1"></a>
-  - [6.1](#strings--quotes) Используйте одинарные кавычки `''` для строк. eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html) jscs: [`validateQuoteMarks`](http://jscs.info/rule/validateQuoteMarks)
+  - [6.1](#strings--quotes) Используйте наклонные кавычки ` `` `  для строк. eslint: [`quotes`](http://eslint.org/docs/rules/quotes.html)
 
     ```javascript
     // плохо
     const name = "Capt. Janeway";
 
-    // плохо - литерал шаблонной строки должен содержать интерполяцию или переводы строк
-    const name = `Capt. Janeway`;
+    // плохо
+    const name = 'Capt. Janeway';
 
     // хорошо
-    const name = 'Capt. Janeway';
+    const name = `Capt. Janeway`;
     ```
 
   <a name="strings--line-length"></a><a name="6.2"></a>
@@ -541,7 +541,9 @@
       'with this, you would get nowhere fast.';
 
     // хорошо
-    const errorMessage = 'This is a super long error that was thrown because of Batman. When you stop to think about how Batman had anything to do with this, you would get nowhere fast.';
+    const errorMessage = `This is a super long error that was thrown because of Batman.
+    When you stop to think about how Batman had anything
+    to do with this, you would get nowhere fast.`;
     ```
 
   <a name="es6-template-literals"></a><a name="6.3"></a>
