@@ -2248,8 +2248,28 @@
     ```
 
   <a name="whitespace--after-blocks"></a><a name="18.7"></a>
-  - [18.7](#whitespace--after-blocks) Оставляйте пустую строку между блоком кода и следующей инструкцией. jscs: [`requirePaddingNewLinesAfterBlocks`](http://jscs.info/rule/requirePaddingNewLinesAfterBlocks)
-
+  - [18.7](#whitespace--after-blocks) Оставляйте пустую строку между блоком кода и следующей инструкцией. Eslint: [`padding-line-between-statements`](https://eslint.org/docs/rules/padding-line-between-statements), [`lines-between-class-members`](https://eslint.org/docs/rules/lines-between-class-members).
+  
+      Пустую строку следует оставлять всегда перед и после следующих блоков(конструкций):
+    ```
+    block,
+    block-like,
+    break,
+    switch,
+    class,
+    return,
+    for,
+    if,
+    function,
+    while,
+    throw,
+    const,
+    let
+    ```
+      Исключением являются только пустые линии между директивами `const` и `let` - между повторяющимися `const` и `let` оставлять пустые линии не следует.
+      
+      :exclamation::boom: За более подробным разъяснением информации по данным блокам переходите по [ссылке](https://eslint.org/docs/rules/padding-line-between-statements#rule-details).
+    
     ```javascript
     // плохо
     if (foo) {
