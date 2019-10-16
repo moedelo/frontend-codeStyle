@@ -4,6 +4,7 @@
 
   1. [Основные правила](#basic-rules)
   1. [Class против `React.createClass` против компонента без состояния (stateless)](#class-vs-reactcreateclass-vs-stateless)
+  1. [Наследование классовых компонентов](#react-class-extends)
   1. [Примеси (mixins)](#mixins)
   1. [Именование](#naming)
   1. [Объявление](#declaration)
@@ -12,8 +13,8 @@
   1. [Пробелы](#spacing)
   1. [Свойства (Props)](#props)
   1. [Ссылки (Refs)](#refs)
-  1. [Круглые скобки](#parentheses)
   1. [Теги](#tags)
+  1. [React.Fragments](#react-fragments)
   1. [Методы](#methods)
   1. [Последовательность](#ordering)
   1. [`isMounted`](#ismounted)
@@ -67,6 +68,10 @@
     }
     ```
 
+## <a name="react-class-extends">Наследование классовых компонентов</a>
+
+  - Наследуйте классовые компоненты от `React.Component`
+  
 ## <a name="mixins">Примеси (mixins)</a>
 
   - [Не используйте примеси](https://facebook.github.io/react/blog/2016/07/13/mixins-considered-harmful.html).
@@ -383,6 +388,12 @@
       baz="baz"
     />
     ```
+
+## <a name="react-fragments">React.Fragments</a>
+
+  - При использовании `React.Fragments` указывайте полное наименование тега, не используйте сокращенный синтаксис (`<>...</>` - не надо так)
+  - Избегайте излишнего использования `React.Fragments` ([eslint правило](https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/jsx-no-useless-fragment.md))
+  
 
 ## <a name="methods">Методы</a>
 
