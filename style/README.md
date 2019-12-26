@@ -464,9 +464,21 @@
     .closeLink { background: hsl(0, 0%, 95%); }
 
     // хорошо
+    @var-redColor: hsl(0, 0%, 95%);
+    .error { color: @var-redColor; }
+    .closeLink { background: @var-redColor; }
+```
+
+- Переменные пишутся с припиской 'var-'.
+``` Less
+    // плохо
     @redColor: hsl(0, 0%, 95%);
-    .error { color: @redColor; }
-    .closeLink { background: @redColor; }
+
+    // плохо
+    @md-redColor: hsl(0, 0%, 95%);
+
+    // хорошо
+    @var-redColor: hsl(0, 0%, 95%);
 ```
 
 - Для однотипных кусков свойств целесообразно использовать миксины.
